@@ -8,3 +8,9 @@ fn echo_fails_no_args() {
         .failure()
         .stderr(predicate::str::contains("USAGE"));
 }
+
+#[test]
+fn echo_runs_with_args() {
+    let mut cmd = Command::cargo_bin("echo_rust").unwrap();
+    cmd.arg("poop").assert().success();
+}
